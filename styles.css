@@ -1,0 +1,383 @@
+:root {
+  --bg-color: #050505; /* Deepest OLED black */
+  --surface: #0a0a0a;
+  --primary-color: #00E5FF; /* Cyan/Teal glow */
+  --secondary-color: #00FF88; /* Emerald glow */
+  --text-color: #ffffff;
+  --text-muted: #8892b0;
+  --danger: #ff3366;
+  --safe: #00FF88;
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-bg: rgba(255, 255, 255, 0.02);
+  --custom-bezier: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.7;
+  overflow-x: hidden;
+  /* Ambient Mesh Gradient Glow */
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(0, 229, 255, 0.04) 0%, transparent 40%),
+    radial-gradient(circle at 85% 30%, rgba(0, 255, 136, 0.03) 0%, transparent 40%);
+  background-attachment: fixed;
+}
+
+/* Typography Scales */
+h1, h2, h3 {
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+h2 {
+  font-size: clamp(1.75rem, 5vw, 3rem);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Eyebrow Tags */
+.eyebrow {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  border-radius: 9999px;
+  padding: 0.25rem 1rem;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+}
+
+/* Navigation - Fluid Island */
+nav {
+  position: fixed;
+  top: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  background: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 9999px;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+nav .logo {
+  font-weight: 800;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+nav .logo i {
+  color: var(--primary-color);
+}
+
+nav .nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.hamburger {
+  display: none;
+  font-size: 1.5rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+nav ul li a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  transition: all 0.4s var(--custom-bezier);
+}
+
+nav ul li a:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Hero Section */
+header {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 2rem;
+  position: relative;
+}
+
+.hero-content {
+  max-width: 1000px;
+  margin-top: 5rem;
+}
+
+.hero-content h1 {
+  font-size: clamp(2rem, 7vw, 4rem);
+  margin-bottom: 1.5rem;
+  background: linear-gradient(180deg, #fff 30%, rgba(255,255,255,0.5) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.1;
+}
+
+.hero-content p {
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  color: var(--text-muted);
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  font-weight: 500;
+}
+
+/* Double-Bezel Architecture (High-End Cards) */
+.glass-outer {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--glass-border);
+  border-radius: 2rem;
+  padding: 0.5rem; /* The outer bezel spacing */
+  box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+}
+
+.glass-card {
+  background: #0a0a0a;
+  border-radius: calc(2rem - 0.5rem); /* Inner core radius */
+  padding: 3rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.05);
+}
+
+/* Grid Layouts (Asymmetrical Bento & Standards) */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Icons / Features */
+.feature-icon {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: var(--primary-color);
+  background: rgba(0, 229, 255, 0.1);
+  padding: 1rem;
+  border-radius: 1rem;
+  display: inline-block;
+}
+
+/* Images */
+.img-fluid {
+  width: 100%;
+  height: auto;
+  border-radius: calc(2rem - 0.5rem);
+  display: block;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1);
+}
+
+/* Macro Whitespace Sections */
+section {
+  padding: 8rem 2rem; /* Massive vertical breathing room */
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+/* Authors Chips */
+.authors-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.author-chip {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border);
+  border-radius: 9999px;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.author-chip strong {
+  color: #fff;
+}
+
+/* Budget Table */
+.budget-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.budget-table th {
+  text-align: left;
+  padding: 1rem 0;
+  color: var(--text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  border-bottom: 1px solid var(--glass-border);
+}
+.budget-table td {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+.budget-table .total-row td {
+  border-top: 1px solid var(--glass-border);
+  border-bottom: none;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+/* Architecture Flow (Fluid) */
+.arch-wrap {
+  margin: 4rem 0;
+}
+.arch-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.arch-node {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--glass-border);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  text-align: center;
+}
+.arch-node .n-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+.arch-node .n-title { font-size: 1.5rem; font-weight: 800; color: #fff; margin-bottom: 0.5rem;}
+.arch-node .n-sub { font-size: 0.9rem; color: var(--text-muted); }
+.arch-arrow, .arch-arrow-mobile { display: none; }
+
+@media (min-width: 992px) {
+  .arch-flow {
+    flex-direction: row;
+    align-items: center;
+  }
+  .arch-node { flex: 1; }
+  .arch-arrow {
+    display: block;
+    color: var(--glass-border);
+    font-size: 1.5rem;
+    padding: 0 1rem;
+  }
+}
+
+/* Mobile Fallbacks - Reducción Extrema */
+@media (max-width: 992px) {
+  /* Escala global: todo lo que usa "rem" se achica un 25% de golpe */
+  html { font-size: 12px !important; } 
+  body { line-height: 1.4 !important; }
+  
+  .grid-2, .grid-3 { grid-template-columns: 1fr; gap: 1rem !important; }
+  
+  /* Hamburger Menu Mobile */
+  nav { 
+    display: flex !important; 
+    top: 1rem !important; 
+    bottom: auto; 
+    width: 90%; 
+    padding: 1rem 1.5rem !important; 
+    justify-content: space-between;
+    flex-wrap: wrap; 
+    border-radius: 1.5rem !important; /* Convertir la "bola" en un rectángulo estilizado */
+  }
+  nav .logo { display: flex !important; font-size: 1.5rem !important; } 
+  .hamburger { display: block; }
+  
+  nav .nav-links { 
+    display: none; 
+    width: 100%; 
+    flex-direction: column; 
+    gap: 1rem !important; 
+    padding-top: 1rem;
+    margin-top: 1rem;
+    border-top: 1px solid var(--glass-border);
+  }
+  nav .nav-links.active {
+    display: flex;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  nav .nav-links li a { padding: 0.5rem 0 !important; font-size: 1.25rem !important; display: block; text-align: center; }
+  
+  /* Relleno mínimo para las secciones */
+  section { padding: 1.5rem 0.75rem !important; }
+  
+  /* Comprimir drásticamente las tarjetas */
+  .glass-outer { padding: 0.1rem !important; border-radius: 1rem !important; }
+  .glass-card { padding: 1rem !important; border-radius: 1rem !important; }
+  
+  /* Textos de párrafos y tablas al mínimo legible */
+  p, li, td, th { font-size: 1rem !important; /* equivale a 12px */ }
+  
+  /* Hero y Títulos */
+  .hero-content { margin-top: 1.5rem; }
+  .hero-content h1 { font-size: 2.5rem !important; margin-bottom: 0.75rem !important; }
+  .hero-content p { font-size: 1.25rem !important; margin-bottom: 1.5rem !important; }
+  
+  h2 { font-size: 2rem !important; margin-bottom: 1rem !important; }
+  h3 { font-size: 1.5rem !important; margin-bottom: 0.5rem !important; }
+  
+  /* Aplastar las pastillas (chips) de los nombres de autores */
+  .authors-row { gap: 0.25rem !important; margin-top: 0.75rem !important; }
+  .author-chip { padding: 0.25rem 0.5rem !important; font-size: 0.85rem !important; }
+  
+  /* Reducir íconos gigantes de las tarjetas */
+  .feature-icon { font-size: 1.25rem !important; padding: 0.5rem !important; margin-bottom: 0.5rem !important; }
+  
+  /* Arquitectura */
+  .arch-wrap { margin: 1.5rem 0 !important; }
+  .arch-node { padding: 0.75rem !important; border-radius: 0.75rem !important; }
+  
+  footer { padding: 1.5rem 1rem !important; }
+}
+
+footer {
+  text-align: center;
+  padding: 4rem;
+  border-top: 1px solid var(--glass-border);
+  color: var(--text-muted);
+}
